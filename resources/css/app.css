@@ -1,11 +1,49 @@
-@import 'tailwindcss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+/* Vuetify Dark Theme Fixes */
+.v-theme--dark .v-field.v-field--variant-filled .v-field__overlay {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    opacity: 1 !important;
+}
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+.v-theme--dark .v-field.v-field--variant-filled:hover .v-field__overlay {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.v-theme--dark .v-field.v-field--variant-filled.v-field--focused .v-field__overlay {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.v-theme--dark .v-field.v-field--variant-filled input,
+.v-theme--dark .v-field.v-field--variant-filled textarea,
+.v-theme--dark .v-field.v-field--variant-filled .v-field__input,
+.v-theme--dark .v-field input,
+.v-theme--dark .v-field textarea {
+    color: #FFFFFF !important;
+}
+
+.v-theme--dark .v-field.v-field--variant-filled {
+    background-color: transparent !important;
+}
+
+.v-theme--dark .v-label,
+.v-theme--dark .v-field-label {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.v-theme--dark .v-field.v-field--focused .v-label,
+.v-theme--dark .v-field.v-field--focused .v-field-label {
+    color: rgb(25, 118, 210) !important;
+}
+
+.v-theme--dark .v-field--variant-outlined .v-field__overlay {
+    background-color: transparent !important;
+}
+
+.v-theme--dark .v-field--variant-outlined .v-field__outline__start,
+.v-theme--dark .v-field--variant-outlined .v-field__outline__end,
+.v-theme--dark .v-field--variant-outlined .v-field__outline__notch {
+    border-color: rgba(255, 255, 255, 0.24) !important;
 }
