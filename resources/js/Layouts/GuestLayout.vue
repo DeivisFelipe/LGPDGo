@@ -7,14 +7,14 @@ defineProps({
 </script>
 
 <template>
-    <v-app>
+    <v-app theme="dark">
         <Head :title="title" />
         
         <v-main>
             <v-container fluid class="fill-height">
                 <v-row align="center" justify="center">
                     <v-col cols="12" sm="8" md="5" lg="4">
-                        <v-card elevation="8" rounded="lg">
+                        <v-card elevation="8" rounded="lg" theme="dark">
                             <v-card-text class="pa-8">
                                 <div class="text-center mb-8">
                                     <v-icon size="64" color="primary">mdi-shield-lock</v-icon>

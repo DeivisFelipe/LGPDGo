@@ -3,6 +3,10 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 
+defineOptions({
+    layout: AuthenticatedLayout,
+});
+
 const page = usePage();
 const user = computed(() => page.props.auth.user);
 const company = computed(() => page.props.auth.user?.company);
@@ -16,9 +20,8 @@ const stats = [
 </script>
 
 <template>
-    <AuthenticatedLayout>
-        <!-- Welcome Section -->
-        <v-row class="mb-4">
+    <!-- Welcome Section -->
+    <v-row class="mb-4">
             <v-col cols="12">
                 <v-card>
                     <v-card-text>
@@ -132,5 +135,4 @@ const stats = [
                 </v-card>
             </v-col>
         </v-row>
-    </AuthenticatedLayout>
 </template>

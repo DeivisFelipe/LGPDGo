@@ -2,6 +2,10 @@
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import { Link, useForm } from '@inertiajs/vue3';
 
+defineOptions({
+    layout: GuestLayout,
+});
+
 defineProps({
     status: {
         type: String,
@@ -18,8 +22,7 @@ const submit = () => {
 </script>
 
 <template>
-    <GuestLayout title="Recuperar Senha">
-        <v-alert type="info" variant="tonal" class="mb-4">
+    <v-alert type="info" variant="tonal" class="mb-4">
             Esqueceu sua senha? Sem problemas. Informe seu e-mail e enviaremos um link para redefinir sua senha.
         </v-alert>
 
@@ -60,5 +63,4 @@ const submit = () => {
                 </Link>
             </div>
         </v-form>
-    </GuestLayout>
 </template>

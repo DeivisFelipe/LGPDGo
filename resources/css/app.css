@@ -2,48 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Vuetify Dark Theme Fixes */
-.v-theme--dark .v-field.v-field--variant-filled .v-field__overlay {
-    background-color: rgba(255, 255, 255, 0.05) !important;
-    opacity: 1 !important;
-}
-
-.v-theme--dark .v-field.v-field--variant-filled:hover .v-field__overlay {
-    background-color: rgba(255, 255, 255, 0.08) !important;
-}
-
-.v-theme--dark .v-field.v-field--variant-filled.v-field--focused .v-field__overlay {
-    background-color: rgba(255, 255, 255, 0.12) !important;
-}
-
-.v-theme--dark .v-field.v-field--variant-filled input,
-.v-theme--dark .v-field.v-field--variant-filled textarea,
-.v-theme--dark .v-field.v-field--variant-filled .v-field__input,
-.v-theme--dark .v-field input,
-.v-theme--dark .v-field textarea {
-    color: #FFFFFF !important;
-}
-
-.v-theme--dark .v-field.v-field--variant-filled {
+/* Vuetify Dark Theme - Inputs com fundo transparente */
+.v-field__overlay {
     background-color: transparent !important;
+    opacity: 0 !important;
 }
 
-.v-theme--dark .v-label,
-.v-theme--dark .v-field-label {
+.v-field input,
+.v-field textarea {
+    color: white !important;
+}
+
+.v-label {
     color: rgba(255, 255, 255, 0.7) !important;
 }
 
-.v-theme--dark .v-field.v-field--focused .v-label,
-.v-theme--dark .v-field.v-field--focused .v-field-label {
+.v-field--focused .v-label {
     color: rgb(25, 118, 210) !important;
-}
-
-.v-theme--dark .v-field--variant-outlined .v-field__overlay {
-    background-color: transparent !important;
-}
-
-.v-theme--dark .v-field--variant-outlined .v-field__outline__start,
-.v-theme--dark .v-field--variant-outlined .v-field__outline__end,
-.v-theme--dark .v-field--variant-outlined .v-field__outline__notch {
-    border-color: rgba(255, 255, 255, 0.24) !important;
 }

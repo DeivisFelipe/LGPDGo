@@ -3,6 +3,10 @@ import GuestLayout from '@/Layouts/GuestLayout.vue';
 import { Link, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
+defineOptions({
+    layout: GuestLayout,
+});
+
 const form = useForm({
     name: '',
     email: '',
@@ -21,8 +25,7 @@ const submit = () => {
 </script>
 
 <template>
-    <GuestLayout title="Registro">
-        <v-form @submit.prevent="submit">
+    <v-form @submit.prevent="submit">
             <v-text-field
                 v-model="form.name"
                 label="Nome"
@@ -95,5 +98,4 @@ const submit = () => {
                 </Link>
             </div>
         </v-form>
-    </GuestLayout>
 </template>
