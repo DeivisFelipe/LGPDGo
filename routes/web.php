@@ -26,6 +26,13 @@ Route::middleware('auth')->group(function () {
         auth()->user()->update(['onboarding_completed' => true]);
         return redirect()->back();
     })->name('onboarding.complete');
+
+    // Data Inventories (ROPA)
+    Route::resource('data-inventories', App\Http\Controllers\DataInventoryController::class);
+    Route::get('/data-inventories/{dataInventory}/completeness', [App\Http\Controllers\DataInventoryController::class, 'checkCompleteness'])
+        ->name('data-inventories.completeness');
+    Route::get('/data-inventories-export', [App\Http\Controllers\DataInventoryController::class, 'export'])
+        ->name('data-inventories.export');
 });
 
 require __DIR__.'/auth.php';

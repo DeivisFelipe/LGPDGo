@@ -16,7 +16,7 @@ const menuSections = [
     {
         title: 'LGPD Core',
         items: [
-            { title: 'Inventário de Dados (ROPA)', icon: 'database', route: 'data-inventory.index', permission: 'view-data-inventory' },
+            { title: 'Inventário de Dados (ROPA)', icon: 'database', route: 'data-inventories.index', permission: null },
             { title: 'Solicitações (DSAR)', icon: 'file-text', route: 'requests.index', permission: 'view-requests', badge: 'dsar' },
             { title: 'Matriz de Riscos', icon: 'alert-triangle', route: 'risks.index', permission: 'view-risks' },
             { title: 'Titulares de Dados', icon: 'users', route: 'data-subjects.index', permission: 'view-data-inventory' },

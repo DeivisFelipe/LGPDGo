@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('department_id')->nullable()->constrained()->onDelete('set null');
             $table->string('nome_processo');
             $table->text('finalidade');
-            $table->enum('base_legal', ['consentimento', 'legitimo_interesse', 'obrigacao_legal', 'execucao_contrato', 'protecao_vida', 'exercicio_regular']);
+            $table->enum('base_legal', ['consentimento', 'contrato', 'obrigacao_legal', 'legitimo_interesse', 'protecao_da_vida', 'exercicio_regular_direitos']);
             $table->json('categoria_dados')->comment('Array de categorias: pessoais, sensiveis, financeiros, etc');
             $table->string('tempo_retencao')->comment('Ex: 5 anos, Indeterminado');
             $table->json('quem_acessa')->comment('Array de departamentos/pessoas com acesso');
