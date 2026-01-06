@@ -77,5 +77,26 @@ class InitialDataSeeder extends Seeder
         $this->command->info('Dados iniciais criados com sucesso!');
         $this->command->info('Superusuário: dev@lgpdgo.com');
         $this->command->info('Senha: password');
+
+        // Criar usuário de teste
+        $testCompany = Company::create([
+            'name' => 'Empresa Teste',
+            'cnpj' => '11.111.111/1111-11',
+            'email' => 'teste@teste.com',
+            'active' => true,
+        ]);
+
+        User::create([
+            'name' => 'Usuário Teste',
+            'email' => 'teste@teste.com',
+            'password' => Hash::make('asdasdasd'),
+            'company_id' => $testCompany->id,
+            'is_super_user' => false,
+            'email_verified_at' => now(),
+        ]);
+
+        $this->command->info('Usuário de teste criado com sucesso!');
+        $this->command->info('E-mail: teste@teste.com');
+        $this->command->info('Senha: asdasdasd');
     }
 }
