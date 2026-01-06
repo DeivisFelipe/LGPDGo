@@ -56,7 +56,7 @@ class DashboardController extends Controller
         $criticalRisks = Risk::where('company_id', $company->id)
             ->whereIn('nivel_risco', ['critico', 'alto'])
             ->whereNotIn('status', ['mitigado', 'resolvido'])
-            ->orderByRaw("FIELD(nivel_risco, 'critico', 'alto')")
+            ->orderByRaw("CASE nivel_risco WHEN 'critico' THEN 1 WHEN 'alto' THEN 2 ELSE 3 END")
             ->limit(5)
             ->get()
             ->map(function ($risk) {

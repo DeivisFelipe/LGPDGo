@@ -190,6 +190,11 @@ class ComplianceScoreService
                 'score' => 0,
                 'maxScore' => 20,
                 'total' => 0,
+                'critical' => 0,
+                'high' => 0,
+                'mitigated' => 0,
+                'withPlan' => 0,
+                'criticalUnmitigated' => 0,
                 'message' => 'Nenhum risco mapeado. Identifique e documente os riscos à privacidade.',
                 'status' => 'critical'
             ];
@@ -244,6 +249,10 @@ class ComplianceScoreService
                 'score' => 0,
                 'maxScore' => 15,
                 'total' => 0,
+                'necessary' => 0,
+                'nonNecessary' => 0,
+                'withConsent' => 0,
+                'active' => 0,
                 'message' => 'Nenhum cookie cadastrado. Se usa analytics/marketing, configure o banner de consentimento.',
                 'status' => 'warning'
             ];
@@ -290,6 +299,9 @@ class ComplianceScoreService
                 'score' => 0,
                 'maxScore' => 10,
                 'total' => 0,
+                'active' => 0,
+                'mandatory' => 0,
+                'completionRate' => 0,
                 'message' => 'Nenhum treinamento cadastrado. Educar a equipe é essencial para conformidade.',
                 'status' => 'warning'
             ];
