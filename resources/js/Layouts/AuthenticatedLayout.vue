@@ -4,6 +4,7 @@ import { Head, usePage } from '@inertiajs/vue3';
 import Sidebar from '@/Components/Sidebar.vue';
 import Header from '@/Components/Header.vue';
 import OnboardingWizard from '@/Components/OnboardingWizard.vue';
+import CookieBanner from '@/Components/CookieBanner.vue';
 
 const page = usePage();
 const user = computed(() => page.props.auth.user);
@@ -52,6 +53,12 @@ const headerSubtitle = ref('Visão Geral');
             :show="showOnboarding" 
             @close="showOnboarding = false"
             @complete="handleOnboardingComplete"
+        />
+
+        <!-- Cookie Banner -->
+        <CookieBanner 
+            :company-name="user?.company?.name || 'Nossa empresa'"
+            privacy-policy-url="/politica-privacidade"
         />
 
         <!-- Help Button Flutuante Global -->

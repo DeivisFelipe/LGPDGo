@@ -27,7 +27,7 @@ const menuSections = [
         items: [
             { title: 'Departamentos', icon: 'building', route: 'departments.index', permission: null },
             { title: 'Treinamentos', icon: 'graduation-cap', route: 'trainings.index', permission: 'view-trainings' },
-            { title: 'Cookies', icon: 'cookie', route: 'cookies.index', permission: 'view-cookies' },
+            { title: 'Cookies', icon: 'cookie', route: 'cookies.index', permission: null },
         ]
     },
     {

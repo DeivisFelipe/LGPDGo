@@ -33,6 +33,23 @@ Route::middleware('auth')->group(function () {
         ->name('data-inventories.completeness');
     Route::get('/data-inventories-export', [App\Http\Controllers\DataInventoryController::class, 'export'])
         ->name('data-inventories.export');
+
+    // Cookies
+    Route::resource('cookies', App\Http\Controllers\CookieController::class);
+    Route::post('/cookies-scan', [App\Http\Controllers\CookieController::class, 'scan'])
+        ->name('cookies.scan');
+    Route::get('/cookies-export', [App\Http\Controllers\CookieController::class, 'export'])
+        ->name('cookies.export');
+
+    // DSAR (Data Subject Access Requests) - Admin
+    Route::resource('requests', App\Http\Controllers\RequestController::class)
+        ->except(['create', 'store']);
 });
+
+// Public DSAR Portal (sem autenticação)
+Route::get('/dsar', [App\Http\Controllers\RequestController::class, 'create'])
+    ->name('dsar.create');
+Route::post('/dsar', [App\Http\Controllers\RequestController::class, 'store'])
+    ->name('dsar.store');
 
 require __DIR__.'/auth.php';
