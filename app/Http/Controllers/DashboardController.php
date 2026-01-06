@@ -6,7 +6,6 @@ use App\Services\ComplianceScoreService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Request as DSARRequest;
-use App\Models\Risk;
 use App\Models\DataInventory;
 
 class DashboardController extends Controller
@@ -52,23 +51,6 @@ class DashboardController extends Controller
                 ];
             });
 
-        // Riscos Críticos
-        $criticalRisks = Risk::where('company_id', $company->id)
-            ->whereIn('nivel_risco', ['critico', 'alto'])
-            ->whereNotIn('status', ['mitigado', 'resolvido'])
-            ->orderByRaw("CASE nivel_risco WHEN 'critico' THEN 1 WHEN 'alto' THEN 2 ELSE 3 END")
-            ->limit(5)
-            ->get()
-            ->map(function ($risk) {
-                return [
-                    'id' => $risk->id,
-                    'titulo' => $risk->titulo,
-                    'nivel_risco' => $risk->nivel_risco,
-                    'status' => $risk->status,
-                    'tem_plano' => !empty($risk->plano_acao),
-                ];
-            });
-
         // Estatísticas Rápidas
         $stats = [
             'total_inventories' => DataInventory::where('company_id', $company->id)->count(),
@@ -78,14 +60,11 @@ class DashboardController extends Controller
                 ->where('status', 'pendente')
                 ->where('prazo_legal', '<', now())
                 ->count(),
-            'total_risks' => Risk::where('company_id', $company->id)->count(),
-            'critical_risks' => Risk::where('company_id', $company->id)->where('nivel_risco', 'critico')->count(),
         ];
 
         return Inertia::render('Dashboard', [
             'compliance' => $complianceData,
             'dsarPending' => $dsarPending,
-            'criticalRisks' => $criticalRisks,
             'stats' => $stats,
         ]);
     }

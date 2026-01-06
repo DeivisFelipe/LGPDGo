@@ -45,6 +45,22 @@ Route::middleware('auth')->group(function () {
     Route::resource('requests', App\Http\Controllers\RequestController::class)
         ->except(['create', 'store']);
 
+    // Departments
+    Route::resource('departments', App\Http\Controllers\DepartmentController::class);
+
+    // Risks
+    Route::resource('risks', App\Http\Controllers\RiskController::class);
+
+    // Trainings
+    Route::resource('trainings', App\Http\Controllers\TrainingController::class);
+
+    // Users
+    Route::resource('users', App\Http\Controllers\UserController::class);
+
+    // Settings
+    Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings.index');
+    Route::put('/settings', [App\Http\Controllers\SettingsController::class, 'update'])->name('settings.update');
+
     // Documents Generator
     Route::get('/documents', [App\Http\Controllers\DocumentController::class, 'index'])
         ->name('documents.index');

@@ -17,17 +17,17 @@ const menuSections = [
         title: 'LGPD Core',
         items: [
             { title: 'Inventário de Dados (ROPA)', icon: 'database', route: 'data-inventories.index', permission: null },
-            { title: 'Solicitações (DSAR)', icon: 'file-text', route: 'requests.index', permission: 'view-requests', badge: 'dsar' },
-            { title: 'Matriz de Riscos', icon: 'alert-triangle', route: 'risks.index', permission: 'view-risks' },
-            { title: 'Titulares de Dados', icon: 'users', route: 'data-subjects.index', permission: 'view-data-inventory' },
+            { title: 'Solicitações (DSAR)', icon: 'file-text', route: 'requests.index', permission: null, badge: 'dsar' },
+            { title: 'Matriz de Riscos', icon: 'alert-triangle', route: 'risks.index', permission: null },
+            { title: 'Cookies', icon: 'cookie', route: 'cookies.index', permission: null },
         ]
     },
     {
         title: 'Gestão',
         items: [
             { title: 'Departamentos', icon: 'building', route: 'departments.index', permission: null },
-            { title: 'Treinamentos', icon: 'graduation-cap', route: 'trainings.index', permission: 'view-trainings' },
-            { title: 'Cookies', icon: 'cookie', route: 'cookies.index', permission: null },
+            { title: 'Treinamentos', icon: 'graduation-cap', route: 'trainings.index', permission: null },
+            { title: 'Usuários', icon: 'user', route: 'users.index', permission: null },
         ]
     },
     {
@@ -40,8 +40,6 @@ const menuSections = [
     {
         title: 'Sistema',
         items: [
-            { title: 'Usuários', icon: 'user', route: 'users.index', permission: 'view-users' },
-            { title: 'Empresas', icon: 'briefcase', route: 'companies.index', permission: 'view-companies' },
             { title: 'Configurações', icon: 'settings', route: 'settings.index', permission: null },
         ]
     }
@@ -139,7 +137,7 @@ const getBadgeCount = (type) => {
                     <Link
                         v-for="item in section.items.filter(i => hasPermission(i.permission))"
                         :key="item.title"
-                        :href="item.route ? route(item.route) : '#'"
+                        :href="route(item.route)"
                         :class="[
                             item.route && route().current(item.route + '*')
                             ? 'bg-indigo-50 text-indigo-700 shadow-sm border border-indigo-100' 

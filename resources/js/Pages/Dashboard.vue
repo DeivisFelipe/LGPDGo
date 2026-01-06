@@ -9,7 +9,6 @@ defineOptions({ layout: AuthenticatedLayout });
 const props = defineProps({
     compliance: Object,
     dsarPending: Array,
-    criticalRisks: Array,
     stats: Object,
 });
 
@@ -184,21 +183,6 @@ const getRiskClass = (nivel) => {
 
             <div class="bg-white rounded-2xl p-6 border-2 border-slate-200 shadow-sm hover:shadow-md transition-shadow">
                 <div class="flex items-center justify-between mb-2">
-                    <div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center text-2xl">⚠️</div>
-                    <span 
-                        v-if="stats?.critical_risks > 0"
-                        class="text-xs font-bold px-2 py-1 rounded-full bg-red-100 text-red-700"
-                    >
-                        {{ stats.critical_risks }} crítico{{ stats.critical_risks > 1 ? 's' : '' }}
-                    </span>
-                </div>
-                <div class="text-3xl font-black text-slate-900">{{ stats?.total_risks || 0 }}</div>
-                <div class="text-sm font-bold text-slate-600">Riscos Mapeados</div>
-                <div class="text-xs text-slate-400 mt-1">{{ compliance?.details?.risks?.mitigated }} mitigados</div>
-            </div>
-
-            <div class="bg-white rounded-2xl p-6 border-2 border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                <div class="flex items-center justify-between mb-2">
                     <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center text-2xl">🏛️</div>
                 </div>
                 <div class="text-3xl font-black text-slate-900">{{ compliance?.details?.structure?.departments || 0 }}</div>
@@ -324,49 +308,6 @@ const getRiskClass = (nivel) => {
             </div>
         </div>
 
-        <!-- Riscos Críticos -->
-        <div v-if="criticalRisks?.length" class="bg-white rounded-3xl border-2 border-red-200 shadow-sm overflow-hidden">
-            <div class="p-6 border-b border-red-100 bg-red-50">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h3 class="text-xl font-black text-slate-900">⚠️ Riscos Críticos e Altos</h3>
-                        <p class="text-sm text-slate-600">Requerem atenção imediata</p>
-                    </div>
-                    <Link
-                        :href="route('risks.index')"
-                        class="text-sm font-bold text-red-600 hover:text-red-800"
-                    >
-                        Ver Todos →
-                    </Link>
-                </div>
-            </div>
-
-            <div class="p-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div 
-                    v-for="risk in criticalRisks"
-                    :key="risk.id"
-                    class="p-4 rounded-xl border-2 border-slate-200 hover:shadow-md transition-all"
-                >
-                    <div class="flex items-start gap-3 mb-3">
-                        <span 
-                            class="px-2 py-1 rounded-lg text-xs font-black uppercase"
-                            :class="getRiskClass(risk.nivel_risco)"
-                        >
-                            {{ risk.nivel_risco }}
-                        </span>
-                        <span 
-                            v-if="!risk.tem_plano"
-                            class="px-2 py-1 rounded-lg text-xs font-black uppercase bg-amber-100 text-amber-700"
-                        >
-                            Sem Plano
-                        </span>
-                    </div>
-                    <h4 class="font-bold text-slate-900 mb-2">{{ risk.titulo }}</h4>
-                    <div class="text-xs text-slate-600 capitalize">Status: {{ risk.status.replace('_', ' ') }}</div>
-                </div>
-            </div>
-        </div>
-
         <!-- Botão Gerar Selo (só aparece com score >= 85) -->
         <div 
             v-if="compliance?.score >= 85"
@@ -378,10 +319,10 @@ const getRiskClass = (nivel) => {
                 Sua empresa atingiu um excelente nível de conformidade. Gere seu selo oficial e mostre ao mercado seu compromisso com a proteção de dados.
             </p>
             <Link
-                :href="route('seal.generate')"
+                :href="route('compliance-badge.index')"
                 class="inline-block px-8 py-4 bg-white text-green-600 font-black rounded-xl hover:bg-green-50 transition-colors shadow-xl text-lg"
             >
-                Gerar Selo de Conformidade LGPD
+                Ver Selo de Conformidade LGPD
             </Link>
         </div>
     </div>

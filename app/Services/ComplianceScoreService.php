@@ -456,28 +456,6 @@ class ComplianceScoreService
             ];
         }
 
-        if (isset($details['risks']['criticalUnmitigated']) && $details['risks']['criticalUnmitigated'] > 0) {
-            $steps[] = [
-                'priority' => 1,
-                'title' => 'Mitigue Riscos Críticos',
-                'description' => "{$details['risks']['criticalUnmitigated']} risco(s) crítico(s) sem plano de ação.",
-                'route' => 'risks.index',
-                'icon' => '⚠️',
-                'impact' => 'critical'
-            ];
-        }
-
-        if ($details['structure']['departments'] < 2) {
-            $steps[] = [
-                'priority' => 2,
-                'title' => 'Crie Departamentos',
-                'description' => 'Organize as áreas da empresa para melhor gestão de dados.',
-                'route' => 'departments.create',
-                'icon' => '🏛️',
-                'impact' => 'medium'
-            ];
-        }
-
         if ($details['cookies']['nonNecessary'] > 0 && $details['cookies']['withConsent'] < $details['cookies']['nonNecessary']) {
             $steps[] = [
                 'priority' => 2,
@@ -489,24 +467,13 @@ class ComplianceScoreService
             ];
         }
 
-        if ($details['trainings']['completionRate'] < 50) {
-            $steps[] = [
-                'priority' => 3,
-                'title' => 'Incentive Treinamentos',
-                'description' => 'Aumente a taxa de conclusão dos treinamentos obrigatórios.',
-                'route' => 'trainings.index',
-                'icon' => '📚',
-                'impact' => 'low'
-            ];
-        }
-
         // Se score >= 85, sugerir geração de selo
         if ($score >= 85) {
             $steps[] = [
                 'priority' => 0,
                 'title' => 'Gere seu Selo LGPD',
                 'description' => 'Parabéns! Você atingiu o nível necessário para gerar o selo de conformidade.',
-                'route' => 'seal.generate',
+                'route' => 'compliance-badge.index',
                 'icon' => '🏅',
                 'impact' => 'achievement'
             ];

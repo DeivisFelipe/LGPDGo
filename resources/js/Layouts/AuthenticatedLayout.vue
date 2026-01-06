@@ -60,9 +60,6 @@ const headerSubtitle = ref('Visão Geral');
             :company-name="user?.company?.name || 'Nossa empresa'"
             privacy-policy-url="/politica-privacidade"
         />
-
-        <!-- Help Button Flutuante Global -->
-        <LGPDFriendlyHelp topic="dpo" position="floating" />
     </div>
 </template>
 
