@@ -144,7 +144,7 @@ class InitialDataSeeder extends Seeder
             'department_id' => $createdDepartments[0]->id,
             'nome_processo' => 'Folha de Pagamento',
             'finalidade' => 'Processamento de salários e benefícios dos colaboradores',
-            'base_legal' => 'execucao_contrato',
+            'base_legal' => 'contrato',
             'categoria_dados' => ['pessoais', 'financeiros', 'trabalhistas'],
             'tempo_retencao' => '5 anos após desligamento',
             'quem_acessa' => ['RH', 'Contabilidade'],

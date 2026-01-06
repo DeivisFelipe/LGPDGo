@@ -17,24 +17,37 @@ class Request extends Model
         'company_id',
         'protocolo',
         'tipo',
+        'tipo_solicitacao',
         'nome_titular',
         'email_titular',
+        'email',
         'telefone_titular',
+        'telefone',
         'documento_titular',
+        'cpf',
         'detalhes',
+        'descricao',
         'status',
         'resposta',
         'responsavel_id',
         'prazo_legal',
+        'prazo_resposta',
         'data_conclusao',
         'verificado',
         'codigo_verificacao',
+        'preferencia_contato',
+        'observacoes_internas',
+        'last_notification_sent_at',
+        'notification_count',
     ];
 
     protected $casts = [
         'prazo_legal' => 'datetime',
+        'prazo_resposta' => 'datetime',
         'data_conclusao' => 'datetime',
+        'last_notification_sent_at' => 'datetime',
         'verificado' => 'boolean',
+        'notification_count' => 'integer',
     ];
 
     protected static function boot()
