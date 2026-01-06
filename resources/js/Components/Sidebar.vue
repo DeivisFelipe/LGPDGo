@@ -33,8 +33,8 @@ const menuSections = [
     {
         title: 'Documentos',
         items: [
-            { title: 'Gerador de Políticas', icon: 'file-check', route: 'documents.generator', permission: 'generate-documents' },
-            { title: 'Selo LGPD', icon: 'award', route: 'seal.show', permission: 'generate-seal' },
+            { title: 'Documentos LGPD', icon: 'file-check', route: 'documents.index', permission: null },
+            { title: 'Selo de Conformidade', icon: 'award', route: 'compliance-badge.index', permission: null },
         ]
     },
     {
