@@ -26,6 +26,7 @@ class User extends Authenticatable
         'password',
         'company_id',
         'is_super_user',
+        'onboarding_completed',
     ];
 
     /**
@@ -49,6 +50,7 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'is_super_user' => 'boolean',
+            'onboarding_completed' => 'boolean',
         ];
     }
 
