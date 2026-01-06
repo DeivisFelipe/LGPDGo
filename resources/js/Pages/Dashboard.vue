@@ -17,122 +17,132 @@ const stats = [
     { title: 'Grupos', value: '3', icon: 'mdi-account-group', color: 'warning' },
     { title: 'Empresas', value: '1', icon: 'mdi-domain', color: 'info' },
 ];
+
+const getStatIcon = (icon) => {
+    const icons = {
+        'mdi-account-multiple': '👥',
+        'mdi-shield-key': '🔐',
+        'mdi-account-group': '👫',
+        'mdi-domain': '🏢',
+    };
+    return icons[icon] || '📊';
+};
 </script>
 
 <template>
-    <!-- Welcome Section -->
-    <v-row class="mb-4">
-            <v-col cols="12">
-                <v-card>
-                    <v-card-text>
-                        <div class="d-flex align-center">
-                            <v-avatar color="primary" size="64" class="mr-4">
-                                <span class="text-h4">{{ user?.name?.charAt(0) }}</span>
-                            </v-avatar>
-                            <div>
-                                <h2 class="text-h5 font-weight-bold">
-                                    Olá, {{ user?.name }}! 👋
-                                </h2>
-                                <p class="text-subtitle-1 text-medium-emphasis mb-0">
-                                    Bem-vindo ao LGPDGo
-                                </p>
-                                <v-chip v-if="user?.is_super_user" color="error" size="small" class="mt-1">
-                                    <v-icon start>mdi-shield-crown</v-icon>
-                                    Superusuário
-                                </v-chip>
-                                <v-chip v-if="company" color="primary" size="small" class="mt-1 ml-2">
-                                    <v-icon start>mdi-domain</v-icon>
-                                    {{ company.name }}
-                                </v-chip>
-                            </div>
-                        </div>
-                    </v-card-text>
-                </v-card>
-            </v-col>
-        </v-row>
+    <div class="space-y-6">
+        <!-- Welcome Section -->
+        <div class="bg-gray-800 rounded-lg shadow-lg p-6 mb-6">
+            <div class="flex items-center gap-4">
+                <div class="w-16 h-16 rounded-full bg-blue-600 flex items-center justify-center text-white text-2xl font-bold">
+                    {{ user?.name?.charAt(0) }}
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-1">
+                        Olá, {{ user?.name }}! 👋
+                    </h2>
+                    <p class="text-gray-400 mb-2">
+                        Bem-vindo ao LGPDGo
+                    </p>
+                    <div class="flex gap-2">
+                        <span v-if="user?.is_super_user" class="inline-flex items-center gap-1 bg-red-600 text-white px-3 py-1 rounded-full text-sm">
+                            👑 Superusuário
+                        </span>
+                        <span v-if="company" class="inline-flex items-center gap-1 bg-blue-600 text-white px-3 py-1 rounded-full text-sm">
+                            🏢 {{ company.name }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Stats Cards -->
-        <v-row>
-            <v-col v-for="stat in stats" :key="stat.title" cols="12" sm="6" md="3">
-                <v-card>
-                    <v-card-text>
-                        <div class="d-flex justify-space-between align-center">
-                            <div>
-                                <p class="text-caption text-medium-emphasis mb-1">
-                                    {{ stat.title }}
-                                </p>
-                                <h3 class="text-h4 font-weight-bold">
-                                    {{ stat.value }}
-                                </h3>
-                            </div>
-                            <v-avatar :color="stat.color" size="56">
-                                <v-icon size="32">{{ stat.icon }}</v-icon>
-                            </v-avatar>
-                        </div>
-                    </v-card-text>
-                </v-card>
-            </v-col>
-        </v-row>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div v-for="stat in stats" :key="stat.title" class="bg-gray-800 rounded-lg shadow p-6">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-gray-400 text-sm mb-2">
+                            {{ stat.title }}
+                        </p>
+                        <h3 class="text-3xl font-bold text-white">
+                            {{ stat.value }}
+                        </h3>
+                    </div>
+                    <div class="text-4xl">
+                        {{ getStatIcon(stat.icon) }}
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Info Cards -->
-        <v-row class="mt-4">
-            <v-col cols="12" md="8">
-                <v-card>
-                    <v-card-title>
-                        <v-icon class="mr-2">mdi-information</v-icon>
-                        Sobre o Sistema
-                    </v-card-title>
-                    <v-card-text>
-                        <p class="mb-4">
-                            O LGPDGo é um sistema completo de gerenciamento de dados com foco em conformidade com a LGPD.
-                        </p>
-                        <v-list>
-                            <v-list-item prepend-icon="mdi-check-circle" title="Multi-tenancy">
-                                <v-list-item-subtitle>Isolamento completo de dados por empresa</v-list-item-subtitle>
-                            </v-list-item>
-                            <v-list-item prepend-icon="mdi-check-circle" title="Sistema de Permissões">
-                                <v-list-item-subtitle>Controle granular de acessos e funcionalidades</v-list-item-subtitle>
-                            </v-list-item>
-                            <v-list-item prepend-icon="mdi-check-circle" title="Grupos de Permissões">
-                                <v-list-item-subtitle>Organize permissões em grupos para facilitar o gerenciamento</v-list-item-subtitle>
-                            </v-list-item>
-                            <v-list-item prepend-icon="mdi-check-circle" title="Autenticação Segura">
-                                <v-list-item-subtitle>Laravel Sanctum com Inertia.js e Vue 3</v-list-item-subtitle>
-                            </v-list-item>
-                        </v-list>
-                    </v-card-text>
-                </v-card>
-            </v-col>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="md:col-span-2 bg-gray-800 rounded-lg shadow-lg p-6">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="text-2xl">ℹ️</span>
+                    <h3 class="text-xl font-bold text-white">Sobre o Sistema</h3>
+                </div>
+                <p class="text-gray-300 mb-4">
+                    O LGPDGo é um sistema completo de gerenciamento de dados com foco em conformidade com a LGPD.
+                </p>
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-500 text-xl mt-1">✓</span>
+                        <div>
+                            <p class="text-white font-semibold">Multi-tenancy</p>
+                            <p class="text-gray-400 text-sm">Isolamento completo de dados por empresa</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-500 text-xl mt-1">✓</span>
+                        <div>
+                            <p class="text-white font-semibold">Sistema de Permissões</p>
+                            <p class="text-gray-400 text-sm">Controle granular de acessos e funcionalidades</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-500 text-xl mt-1">✓</span>
+                        <div>
+                            <p class="text-white font-semibold">Grupos de Permissões</p>
+                            <p class="text-gray-400 text-sm">Organize permissões em grupos para facilitar o gerenciamento</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-500 text-xl mt-1">✓</span>
+                        <div>
+                            <p class="text-white font-semibold">Autenticação Segura</p>
+                            <p class="text-gray-400 text-sm">Laravel Sanctum com Inertia.js e Vue 3</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
 
-            <v-col cols="12" md="4">
-                <v-card>
-                    <v-card-title>
-                        <v-icon class="mr-2">mdi-account</v-icon>
-                        Suas Informações
-                    </v-card-title>
-                    <v-card-text>
-                        <v-list>
-                            <v-list-item>
-                                <v-list-item-title>Nome</v-list-item-title>
-                                <v-list-item-subtitle>{{ user?.name }}</v-list-item-subtitle>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-title>E-mail</v-list-item-title>
-                                <v-list-item-subtitle>{{ user?.email }}</v-list-item-subtitle>
-                            </v-list-item>
-                            <v-list-item v-if="company">
-                                <v-list-item-title>Empresa</v-list-item-title>
-                                <v-list-item-subtitle>{{ company.name }}</v-list-item-subtitle>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-title>Tipo de Usuário</v-list-item-title>
-                                <v-list-item-subtitle>
-                                    {{ user?.is_super_user ? 'Superusuário' : 'Usuário Regular' }}
-                                </v-list-item-subtitle>
-                            </v-list-item>
-                        </v-list>
-                    </v-card-text>
-                </v-card>
-            </v-col>
-        </v-row>
+            <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="text-2xl">👤</span>
+                    <h3 class="text-xl font-bold text-white">Suas Informações</h3>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <p class="text-gray-400 text-sm">Nome</p>
+                        <p class="text-white font-semibold">{{ user?.name }}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-400 text-sm">E-mail</p>
+                        <p class="text-white font-semibold break-all">{{ user?.email }}</p>
+                    </div>
+                    <div v-if="company">
+                        <p class="text-gray-400 text-sm">Empresa</p>
+                        <p class="text-white font-semibold">{{ company.name }}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-400 text-sm">Tipo de Usuário</p>
+                        <p class="text-white font-semibold">
+                            {{ user?.is_super_user ? 'Superusuário' : 'Usuário Regular' }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
